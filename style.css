@@ -1,0 +1,441 @@
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul:        #1A4A7A;
+    --azul-medio:  #2E6BA6;
+    --azul-claro:  #D6E8F7;
+    --azul-suave:  #EBF4FC;
+    --cinza-bg:    #F5F4F1;
+    --cinza-borda: #E2DFD8;
+    --cinza-texto: #6B6760;
+    --texto:       #1C1C1A;
+    --branco:      #FFFFFF;
+    --verde:       #2E7D5E;
+    --verde-bg:    #EAF4EF;
+    --erro:        #A32D2D;
+    --erro-bg:     #FCEBEB;
+    --erro-borda:  #F09595;
+    --radius:      12px;
+    --radius-sm:   8px;
+}
+
+body {
+    font-family: 'DM Sans', Arial, sans-serif;
+    background: var(--cinza-bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--texto);
+}
+
+/* =============================================
+   LAYOUT PRINCIPAL — SPLIT SCREEN
+   ============================================= */
+.page-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 860px;
+    min-height: 540px;
+    background: var(--branco);
+    border-radius: 18px;
+    border: 1px solid var(--cinza-borda);
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(26, 74, 122, 0.10);
+}
+
+/* =============================================
+   PAINEL ESQUERDO
+   ============================================= */
+.panel-left {
+    background: var(--verde);
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panel-logo-img {
+    height: 38px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.panel-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 0 20px;
+}
+
+.panel-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+.panel-headline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.35;
+    margin-bottom: 16px;
+}
+
+.panel-headline em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.panel-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.7;
+    max-width: 260px;
+}
+
+.panel-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.40);
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* =============================================
+   PAINEL DIREITO — FORMULÁRIO
+   ============================================= */
+.panel-right {
+    padding: 44px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Logo mobile: escondida no desktop */
+.mobile-logo {
+    display: none;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.mobile-logo img {
+    height: 42px;
+    object-fit: contain;
+}
+
+.form-card {
+    width: 100%;
+}
+
+.form-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 8px;
+}
+
+.form-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--verde);
+    margin-bottom: 6px;
+}
+
+.form-subtitle {
+    font-size: 13px;
+    color: var(--verde);
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+/* =============================================
+   CAMPOS DO FORMULÁRIO
+   ============================================= */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cinza-texto);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 7px;
+}
+
+/* Wrapper com ícone */
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 13px;
+    font-size: 15px;
+    color: var(--cinza-texto);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.input-wrap input {
+    width: 100%;
+    padding: 11px 14px 11px 38px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--texto);
+    background: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.input-wrap input::placeholder {
+    color: #BCBAB4;
+    font-size: 13px;
+}
+
+.input-wrap input:focus {
+    border-color: var(--azul-medio);
+    box-shadow: 0 0 0 3px rgba(46, 107, 166, 0.12);
+}
+
+/* Campo de senha */
+.password-wrapper input {
+    padding-right: 42px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 13px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--cinza-texto);
+    transition: color 0.2s;
+    line-height: 1;
+    z-index: 1;
+}
+
+.toggle-password:hover {
+    color: var(--azul-medio);
+}
+
+/* =============================================
+   OPÇÕES: LEMBRAR + ESQUECI
+   ============================================= */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--cinza-texto);
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--azul);
+    cursor: pointer;
+}
+
+.link-forgot {
+    font-size: 13px;
+    color: var(--azul-medio);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.link-forgot:hover {
+    color: var(--azul);
+    text-decoration: underline;
+}
+
+/* =============================================
+   BOTÃO DE LOGIN
+   ============================================= */
+.btn-login {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+}
+
+.btn-login:hover {
+    background: var(--azul-medio);
+    transform: translateY(-1px);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.btn-login i {
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.btn-login:hover i {
+    transform: translateX(3px);
+}
+
+/* Estado de loading */
+.btn-login.loading {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* =============================================
+   MENSAGENS DE FEEDBACK
+   ============================================= */
+.message {
+    margin-top: 16px;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s;
+    opacity: 0;
+}
+
+.message.success {
+    max-height: 60px;
+    padding: 11px 14px;
+    background: var(--verde-bg);
+    color: var(--verde);
+    border: 1px solid #9FE1CB;
+    opacity: 1;
+}
+
+.message.error {
+    max-height: 60px;
+    padding: 11px 14px;
+    background: var(--erro-bg);
+    color: var(--erro);
+    border: 1px solid var(--erro-borda);
+    opacity: 1;
+}
+
+/* =============================================
+   RODAPÉ DO FORMULÁRIO
+   ============================================= */
+.form-help {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--cinza-texto);
+}
+
+.form-help a {
+    color: var(--azul-medio);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-help a:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   RESPONSIVO — TABLET (≤ 768px)
+   ============================================= */
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding: 20px 16px 40px;
+    }
+
+    .page-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+        box-shadow: 0 2px 20px rgba(26, 74, 122, 0.10);
+    }
+
+    /* Esconde painel esquerdo no mobile */
+    .panel-left {
+        display: none;
+    }
+
+    .panel-right {
+        padding: 36px 28px 32px;
+    }
+
+    /* Exibe logo no topo em mobile */
+    .mobile-logo {
+        display: block;
+    }
+}
+
+/* =============================================
+   RESPONSIVO — MOBILE PEQUENO (≤ 400px)
+   ============================================= */
+@media (max-width: 400px) {
+    .panel-right {
+        padding: 28px 20px 28px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
